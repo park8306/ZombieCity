@@ -9,6 +9,12 @@ using UnityEngine;
 /// </summary>
 static public class MyExtension
 {
+    public static float VectorToDegree(this Vector3 v)
+    {
+        float radian = Mathf.Atan2(v.z, v.x);
+        return (radian * Mathf.Rad2Deg);
+    }
+
     public static T AddOrGetComponent<T>(this Transform tr) where T : Component
     {
         T t = tr.GetComponent<T>();
