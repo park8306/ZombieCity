@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
     public float speed = 5;
+    public GameObject bullet;
+    public Transform bulletPosition;
     // Update is called once per frame
     void Update()
     {
@@ -24,13 +26,15 @@ public class Player : MonoBehaviour
             transform.Translate(move * speed * Time.deltaTime, Space.World);
             transform.forward = move;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKey(KeyCode.Space))
         {
+            //Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
             animator.Play("Shoot");
+            Instantiate(bullet, bulletPosition.position, transform.rotation);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            animator.Play("Run");
-        }
+        animator.SetFloat("DirX", move.x);
+        animator.SetFloat("DirY", move.z);
+        animator.SetFloat("Speed", move.sqrMagnitude);
     }
 }
