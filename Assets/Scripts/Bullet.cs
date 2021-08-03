@@ -21,8 +21,6 @@ public class Bullet : MonoBehaviour
         if(other.CompareTag("Zombie")) // 일반적으로 tag로 비교하면 GC가 발생한다.
         {
             var zombie = other.GetComponent<Zombie>();
-            //Vector3 toMoveDirection = transform.position - zombie.transform.position;
-            //toMoveDirection.Normalize();
             zombie.TakeHit(power, transform.forward);
             Destroy(gameObject);
         }

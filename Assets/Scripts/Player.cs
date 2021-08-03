@@ -15,7 +15,7 @@ public partial class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.deltaTime == 0)
+        if (Time.deltaTime == 0)    // 게임을 멈추고 테스트 하기 위해서
         {
             return;
         }
@@ -39,7 +39,6 @@ public partial class Player : MonoBehaviour
             relateMove += Camera.main.transform.right * move.x;
             relateMove.y = 0;
             move = relateMove;
-            //Camera.main.transform.forward
             move.Normalize();
             transform.Translate(move * speed * Time.deltaTime, Space.World);
         }

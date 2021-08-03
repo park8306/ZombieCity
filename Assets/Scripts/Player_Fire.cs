@@ -49,7 +49,6 @@ public partial class Player : MonoBehaviour
     void DecreaseRecoil()
     {
         recoilValue = Mathf.Lerp(recoilValue, 0, recoilLerpValue);
-
     }
 
     Vector3 recoil;
