@@ -5,6 +5,15 @@ using UnityEngine;
 
 public partial class Player : MonoBehaviour
 {
+    public enum StateType
+    {
+        Idle,
+        Move,
+        TakeHit,
+        Roll,
+        Die,
+    }
+    public bool isFiring = false;
     Animator animator;
     private void Awake()
     {
@@ -12,7 +21,7 @@ public partial class Player : MonoBehaviour
         bulletLight = GetComponentInChildren<Light>(true).gameObject;
     }
     public float speed = 5;
-    // Update is called once per frame
+    public float speedWhileShooting = 3;
     void Update()
     {
         if (Time.deltaTime == 0)    // 게임을 멈추고 테스트 하기 위해서
@@ -37,21 +46,10 @@ public partial class Player : MonoBehaviour
     }
     public AnimationCurve rollingSpeedAC;
     public float rollingSpeedUserMultiply = 1;
-    public enum StateType
-    {
-        Idle,
-        Move,
-        Attack,
-        TakeHit,
-        Roll,
-        Die,
-    }
     public StateType stateType = StateType.Idle;
     private IEnumerator RollCo()
     {
-        animator.SetBool("Fire", false);
-        DecreaseRecoil();
-
+        EndFiring();
         stateType = StateType.Roll;
         // 구르는 애니메이션 재생
         animator.SetTrigger("Roll");
@@ -87,7 +85,8 @@ public partial class Player : MonoBehaviour
             relateMove.y = 0;
             move = relateMove;
             move.Normalize();
-            transform.Translate(move * speed * Time.deltaTime, Space.World);
+            float _speed = isFiring ? speedWhileShooting : speed;
+            transform.Translate(move * _speed * Time.deltaTime, Space.World);
         }
         animator.SetFloat("DirX", move.x);
         animator.SetFloat("DirY", move.z);
