@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class Player : MonoBehaviour
+public partial class Player : Actor
 {
     public enum StateType
     {
@@ -14,7 +14,6 @@ public partial class Player : MonoBehaviour
         Die,
     }
     public bool isFiring = false;
-    Animator animator;
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -106,8 +105,12 @@ public partial class Player : MonoBehaviour
         }
     }
 
-    internal void TakeHit()
+    internal void TakeHit(int damage)
     {
-        Debug.Log("플레이어 맞음");
+        hp -= damage;
+
+        //animator
+        // 
+        //CreateBloodEffect();
     }
 }

@@ -5,12 +5,10 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public class Zombie : MonoBehaviour
+public class Zombie : Actor
 {
     public Transform target;
     NavMeshAgent agent;
-    Animator animator;
-    public int hp = 100;
     float originalSpeed;
     // Start is called before the first frame update
     IEnumerator Start()
@@ -91,7 +89,7 @@ public class Zombie : MonoBehaviour
             attackCollider.radius, enemyLayer);
         foreach (var item in enemyColliders)
         {
-            item.GetComponent<Player>().TakeHit();
+            item.GetComponent<Player>().TakeHit(power);
         }
         // 공격 애니메이션 끝날 때 까지 대기
         yield return new WaitForSeconds(attackAnimationTime - attackTime);
@@ -114,14 +112,6 @@ public class Zombie : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackDistance);
     }
 
-    public float bloodEffectYPosition = 1.3f;
-    public GameObject bloodParticle;
-    private void CreateBloodEffect()
-    {
-        var pos = transform.position;
-        pos.y = bloodEffectYPosition;
-        Instantiate(bloodParticle, pos, Quaternion.identity);
-    }
     internal void TakeHit(int damage, Vector3 toMoveDirection)
     {
         hp -= damage;
