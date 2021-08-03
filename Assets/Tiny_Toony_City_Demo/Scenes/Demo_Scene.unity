@@ -2315,7 +2315,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.38011703, y: 0.029791044, z: -0.0122505, w: 0.9243774}
+  m_LocalRotation: {x: 0.380117, y: 0.029790988, z: -0.012250475, w: 0.9243774}
   m_LocalPosition: {x: -21.846914, y: 6.870001, z: 0.47361088}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2800,7 +2800,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239853667}
-  m_LocalRotation: {x: 0.38011703, y: 0.029791044, z: -0.0122505, w: 0.9243774}
+  m_LocalRotation: {x: 0.380117, y: 0.029790988, z: -0.012250475, w: 0.9243774}
   m_LocalPosition: {x: -23.422539, y: -3.4399996, z: 12.108163}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3859,7 +3859,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869453776}
-  m_LocalRotation: {x: 0.5648935, y: -0.06880939, z: 0.04734897, w: 0.82092553}
+  m_LocalRotation: {x: 0.56489354, y: -0.06880945, z: 0.047349013, w: 0.82092553}
   m_LocalPosition: {x: -21.440891, y: -3.4399996, z: -23.811771}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4593,6 +4593,66 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8675995378751853572, guid: 958317996ab674348875710457518a40, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
+      propertyPath: rollingSpeedAC.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
+      propertyPath: rollingSpeedAC.m_Curve.Array.data[0].time
+      value: 0.0041656494
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
+      propertyPath: rollingSpeedAC.m_Curve.Array.data[1].time
+      value: 0.56922895
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
+      propertyPath: rollingSpeedAC.m_Curve.Array.data[2].time
+      value: 2.3079348
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
+      propertyPath: rollingSpeedAC.m_Curve.Array.data[0].value
+      value: 0.57547
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
+      propertyPath: rollingSpeedAC.m_Curve.Array.data[1].value
+      value: 1.7666289
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
+      propertyPath: rollingSpeedAC.m_Curve.Array.data[2].value
+      value: 0.0002217982
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
+      propertyPath: rollingSpeedAC.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
+      propertyPath: rollingSpeedAC.m_Curve.Array.data[1].inSlope
+      value: 1.2044271
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
+      propertyPath: rollingSpeedAC.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
+      propertyPath: rollingSpeedAC.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
+      propertyPath: rollingSpeedAC.m_Curve.Array.data[1].outSlope
+      value: 1.2044271
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
+      propertyPath: rollingSpeedAC.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
+      propertyPath: rollingSpeedAC.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
+      propertyPath: rollingSpeedAC.m_Curve.Array.data[1].tangentMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8675995378751853574, guid: 958317996ab674348875710457518a40, type: 3}
