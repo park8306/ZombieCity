@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4281038238315931955}
+  - component: {fileID: 7110322526709569965}
   m_Layer: 0
   m_Name: Demo_Block (3)
   m_TagString: Untagged
@@ -47,6 +48,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
+--- !u!114 &7110322526709569965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950844738170886944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64968ce100316ad40988b334b0d07258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundBlood: {fileID: 8138689290005999782, guid: f536263131fab4e4d931ebdb4e9722df, type: 3}
 --- !u!1 &1056921440357876507
 GameObject:
   m_ObjectHideFlags: 0

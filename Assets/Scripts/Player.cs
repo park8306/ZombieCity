@@ -105,4 +105,9 @@ public partial class Player : MonoBehaviour
             transform.forward = dir;
         }
     }
+
+    internal void TakeHit()
+    {
+        Debug.Log("플레이어 맞음");
+    }
 }
