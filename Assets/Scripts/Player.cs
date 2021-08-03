@@ -22,6 +22,25 @@ public partial class Player : MonoBehaviour
         Move();
         Fire();
         LookAtMouse();
+        Roll();
+    }
+
+    private void Roll()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(RollCo());
+        }
+    }
+
+    private IEnumerator RollCo()
+    {
+        // 구르는 애니메이션 재생
+        animator.SetTrigger("Roll");
+        yield return null;
+        // 구르는 동안 이동 스피드를 빠르게 하자.
+        // 회전 방향은 처음 바라보던 방향으로 고정.
+        // 총알 금지, 움직이는거 금지. 마우스 바라보는거 금지.
     }
 
     private void Move()
