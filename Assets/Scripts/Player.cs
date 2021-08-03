@@ -19,10 +19,13 @@ public partial class Player : MonoBehaviour
         {
             return;
         }
-        Move();
-        Fire();
-        LookAtMouse();
-        Roll();
+        if (stateType != StateType.Roll)
+        {
+            Move();
+            Fire();
+            LookAtMouse();
+            Roll(); 
+        }
     }
 
     private void Roll()
@@ -33,22 +36,37 @@ public partial class Player : MonoBehaviour
         }
     }
     public AnimationCurve rollingSpeedAC;
-    float rollingSpeedMultiply = 1;
     public float rollingSpeedUserMultiply = 1;
+    public enum StateType
+    {
+        Idle,
+        Move,
+        Attack,
+        TakeHit,
+        Roll,
+        Die,
+    }
+    public StateType stateType = StateType.Idle;
     private IEnumerator RollCo()
     {
+        animator.SetBool("Fire", false);
+        DecreaseRecoil();
+
+        stateType = StateType.Roll;
         // 구르는 애니메이션 재생
         animator.SetTrigger("Roll");
+        // 구르는 동안 이동 스피드를 빠르게 하자.
         float startTime = Time.time;    // 구르는 모션 시작하는 시간
         float endTime = startTime + rollingSpeedAC[rollingSpeedAC.length - 1].time; // 애니메이션 커브가 끝나야되는 시간
         while (endTime > Time.time) // 현재 시간이 애니메이션 커브 시간보다 작을 때 까지 실행
         {
             float time = Time.time - startTime; // 애니메이션 커브의 값을 받아오기 위한 시간 값
-            rollingSpeedMultiply = rollingSpeedAC.Evaluate(time) * rollingSpeedUserMultiply;    // 애니메이션 커브의 값을 받아온다.
+            float rollingSpeedMultiply = rollingSpeedAC.Evaluate(time) * rollingSpeedUserMultiply;    // 애니메이션 커브의 값을 받아온다.
+
+            transform.Translate(transform.forward * speed * rollingSpeedMultiply * Time.deltaTime, Space.World);
             yield return null;
         }
-        rollingSpeedMultiply = 1;
-        // 구르는 동안 이동 스피드를 빠르게 하자.
+        stateType = StateType.Idle;
         // 회전 방향은 처음 바라보던 방향으로 고정.
         // 총알 금지, 움직이는거 금지. 마우스 바라보는거 금지.
     }
@@ -69,7 +87,7 @@ public partial class Player : MonoBehaviour
             relateMove.y = 0;
             move = relateMove;
             move.Normalize();
-            transform.Translate(move * speed * rollingSpeedMultiply * Time.deltaTime, Space.World);
+            transform.Translate(move * speed * Time.deltaTime, Space.World);
         }
         animator.SetFloat("DirX", move.x);
         animator.SetFloat("DirY", move.z);

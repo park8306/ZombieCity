@@ -2315,7 +2315,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.380117, y: 0.029790988, z: -0.012250475, w: 0.9243774}
+  m_LocalRotation: {x: 0.38011703, y: 0.029791044, z: -0.0122505, w: 0.9243774}
   m_LocalPosition: {x: -21.846914, y: 6.870001, z: 0.47361088}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2800,7 +2800,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239853667}
-  m_LocalRotation: {x: 0.380117, y: 0.029790988, z: -0.012250475, w: 0.9243774}
+  m_LocalRotation: {x: 0.38011703, y: 0.029791044, z: -0.0122505, w: 0.9243774}
   m_LocalPosition: {x: -23.422539, y: -3.4399996, z: 12.108163}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3384,7 +3384,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634219023}
-  m_LocalRotation: {x: 0.1722632, y: -0.010653919, z: 0.0018632424, w: 0.9849916}
+  m_LocalRotation: {x: 0.1722632, y: -0.010653958, z: 0.0018632491, w: 0.9849916}
   m_LocalPosition: {x: -20.953693, y: -3.4399996, z: -14.6965275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3859,7 +3859,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869453776}
-  m_LocalRotation: {x: 0.56489354, y: -0.06880945, z: 0.047349013, w: 0.82092553}
+  m_LocalRotation: {x: 0.5648934, y: -0.06880933, z: 0.047348917, w: 0.8209256}
   m_LocalPosition: {x: -21.440891, y: -3.4399996, z: -23.811771}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4605,11 +4605,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
       propertyPath: rollingSpeedAC.m_Curve.Array.data[1].time
-      value: 0.56922895
+      value: 0.2718248
       objectReference: {fileID: 0}
     - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
       propertyPath: rollingSpeedAC.m_Curve.Array.data[2].time
-      value: 2.3079348
+      value: 1.0954149
       objectReference: {fileID: 0}
     - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
       propertyPath: rollingSpeedAC.m_Curve.Array.data[0].value
