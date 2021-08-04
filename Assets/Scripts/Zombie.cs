@@ -89,7 +89,7 @@ public class Zombie : Actor
             attackCollider.radius, enemyLayer);
         foreach (var item in enemyColliders)
         {
-            item.GetComponent<Player>().TakeHit(power);
+            item.GetComponent<Player>()?.TakeHit(power);
         }
         // 공격 애니메이션 끝날 때 까지 대기
         yield return new WaitForSeconds(attackAnimationTime - attackTime);

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public partial class Player : Actor
 {
+    public static Player instance;
     public enum StateType
     {
         Idle,
@@ -14,13 +15,20 @@ public partial class Player : Actor
         Die,
     }
     public bool isFiring = false;
+    new public Rigidbody rigidbody;
     private void Awake()
     {
+        rigidbody = GetComponent<Rigidbody>();
+        instance = this;
         animator = GetComponentInChildren<Animator>();
         bulletLight = GetComponentInChildren<Light>(true).gameObject;
     }
     public float speed = 5;
     public float speedWhileShooting = 3;
+    private void FixedUpdate()
+    {
+        rigidbody.velocity = Vector3.zero;
+    }
     void Update()
     {
         if (Time.deltaTime == 0)    // 게임을 멈추고 테스트 하기 위해서
@@ -108,7 +116,7 @@ public partial class Player : Actor
     internal void TakeHit(int damage)
     {
         hp -= damage;
-
+        Debug.Log("플레이어 맞음");
         //animator
         // 
         //CreateBloodEffect();
