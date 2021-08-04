@@ -13,7 +13,7 @@ public class Zombie : Actor
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        attackCollider = GetComponentInChildren<SphereCollider>();
+        attackCollider = transform.Find("AttackRange").GetComponent<SphereCollider>();
         agent = GetComponent<NavMeshAgent>();
         originalSpeed = agent.speed;
         animator = GetComponentInChildren<Animator>();
@@ -56,15 +56,37 @@ public class Zombie : Actor
         yield return new WaitForSeconds(Random.Range(0.5f, 2f));
 
         // 타겟이 공격 범위 안에 들어왔는가?
-        if (TargetIsInAttackArea())
+        SetFsm_SelectAttackTargetOrChase();
+    }
+
+    private void SetFsm_SelectAttackTargetOrChase()
+    {
+        if (IsAttackableTarget())
         {
-            CurrentFsm = AttackFSM;
+            if (TargetIsInAttackArea())
+            {
+                CurrentFsm = AttackFSM;
+            }
+            else
+            {
+                CurrentFsm = ChaseFSM; // FSM은 yield문이랑 다음 행동의 FSM을 지정해주어야한다
+            }
         }
         else
         {
-            CurrentFsm = ChaseFSM; // FSM은 yield문이랑 다음 행동의 FSM을 지정해주어야한다
+            // 공격 가능한 타겟 찾기.
+            // 공격 가능한 타겟이 없다면
+            // -> 배회하기 혹은 제자리 가만 있기.
         }
     }
+
+    private bool IsAttackableTarget()
+    {
+        if (target.GetComponent<Player>().stateType == Player.StateType.Die)
+            return false;
+        return true;
+    }
+
     public float attackTime = 0.4f;
     public float attackAnimationTime = 0.8f;
     public SphereCollider attackCollider;
@@ -96,7 +118,7 @@ public class Zombie : Actor
         // 이동 스피드 복구
         SetOriginalSpeed();
         // FSM지정.
-        CurrentFsm = ChaseFSM;
+        SetFsm_SelectAttackTargetOrChase();
     }
 
     private bool TargetIsInAttackArea()

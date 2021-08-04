@@ -3094,6 +3094,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: bdd8b59fd28ade14d951aeeb4c9644d0, type: 3}
   m_PrefabInstance: {fileID: 1528909321}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &1559158019 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 2048889966, guid: 903bcb50d10ecfc4c90afa5ac157fa8c, type: 3}
+  m_PrefabInstance: {fileID: 2409478095861932402}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1603796711
 GameObject:
   m_ObjectHideFlags: 0
@@ -3220,7 +3225,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634219023}
-  m_LocalRotation: {x: 0.1722632, y: -0.010653958, z: 0.0018632491, w: 0.9849916}
+  m_LocalRotation: {x: 0.1722632, y: -0.010653919, z: 0.0018632424, w: 0.9849916}
   m_LocalPosition: {x: -20.953693, y: -3.4399996, z: -14.6965275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3622,7 +3627,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869453776}
-  m_LocalRotation: {x: 0.5648935, y: -0.06880939, z: 0.047348965, w: 0.82092553}
+  m_LocalRotation: {x: 0.56489354, y: -0.06880945, z: 0.047349013, w: 0.82092553}
   m_LocalPosition: {x: -21.440891, y: -3.4399996, z: -23.811771}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4054,6 +4059,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 671884443}
     - target: {fileID: 2409478095927085505, guid: 903bcb50d10ecfc4c90afa5ac157fa8c, type: 3}
+      propertyPath: attackCollider
+      value: 
+      objectReference: {fileID: 1559158019}
+    - target: {fileID: 2409478095927085505, guid: 903bcb50d10ecfc4c90afa5ac157fa8c, type: 3}
       propertyPath: attackDistance
       value: 1.28
       objectReference: {fileID: 0}
@@ -4067,7 +4076,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409478095927085509, guid: 903bcb50d10ecfc4c90afa5ac157fa8c, type: 3}
       propertyPath: m_UseGravity
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2409478095927085509, guid: 903bcb50d10ecfc4c90afa5ac157fa8c, type: 3}
       propertyPath: m_IsKinematic
@@ -4411,7 +4420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8675995378751853570, guid: 958317996ab674348875710457518a40, type: 3}
       propertyPath: m_UseGravity
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8675995378751853570, guid: 958317996ab674348875710457518a40, type: 3}
       propertyPath: m_IsKinematic
@@ -4464,6 +4473,14 @@ PrefabInstance:
     - target: {fileID: 8675995378751853572, guid: 958317996ab674348875710457518a40, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
+      propertyPath: bloodParticle
+      value: 
+      objectReference: {fileID: 4712525820969449428, guid: a28415bc3a83379408f933ded1566b77, type: 3}
+    - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
+      propertyPath: diePreDelayTime
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8675995378751853573, guid: 958317996ab674348875710457518a40, type: 3}
       propertyPath: rollingSpeedAC.m_Curve.Array.size

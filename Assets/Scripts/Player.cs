@@ -18,6 +18,7 @@ public partial class Player : Actor
     new public Rigidbody rigidbody;
     private void Awake()
     {
+        Debug.Log(Screen.safeArea.width);
         rigidbody = GetComponent<Rigidbody>();
         instance = this;
         animator = GetComponentInChildren<Animator>();
@@ -25,13 +26,17 @@ public partial class Player : Actor
     }
     public float speed = 5;
     public float speedWhileShooting = 3;
-    private void FixedUpdate()
-    {
-        rigidbody.velocity = Vector3.zero;
-    }
+    //private void FixedUpdate()
+    //{
+    //    rigidbody.velocity = Vector3.zero;
+    //}
     void Update()
     {
         if (Time.deltaTime == 0)    // 게임을 멈추고 테스트 하기 위해서
+        {
+            return;
+        }
+        if (stateType == StateType.Die)
         {
             return;
         }
@@ -117,8 +122,22 @@ public partial class Player : Actor
     {
         hp -= damage;
         Debug.Log("플레이어 맞음");
+        CreateBloodEffect();
+        animator.SetTrigger("TakeHit");
+        if (hp <= 0)
+        {
+            StartCoroutine(DieCo());
+        }
         //animator
         // 
         //CreateBloodEffect();
+    }
+    public float diePreDelayTime=0.3f;
+    private IEnumerator DieCo()
+    {
+        stateType = StateType.Die;
+        GetComponent<Collider>().enabled = false;
+        yield return new WaitForSeconds(diePreDelayTime);
+        animator.SetTrigger("Die");
     }
 }
