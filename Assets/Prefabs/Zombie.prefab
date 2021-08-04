@@ -90,7 +90,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048889964}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -143,10 +143,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd10eb111cada9d40ad9140d54fa6790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  hp: 10000
-  bloodEffectYPosition: 1.3
+  hp: 100
   bloodParticle: {fileID: 4712525820969449428, guid: a28415bc3a83379408f933ded1566b77, type: 3}
+  bloodEffectYPosition: 1.3
+  target: {fileID: 0}
+  attackTime: 0.4
+  attackAnimationTime: 0.8
+  attackCollider: {fileID: 2048889966}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  power: 20
+  attackDistance: 1.28
   moveBackDistance: 0.1
   moveBackNoise: 0.1
   TakeHitStopSpeedTime: 0.1
@@ -183,11 +191,11 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!135 &2409478095927085508
 SphereCollider:
   m_ObjectHideFlags: 0
