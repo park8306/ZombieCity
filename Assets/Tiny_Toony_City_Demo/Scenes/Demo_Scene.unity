@@ -3835,7 +3835,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634219023}
-  m_LocalRotation: {x: 0.1722632, y: -0.010653919, z: 0.0018632424, w: 0.9849916}
+  m_LocalRotation: {x: 0.1722632, y: -0.010653958, z: 0.0018632491, w: 0.9849916}
   m_LocalPosition: {x: -20.953693, y: -3.4399996, z: -14.6965275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4475,7 +4475,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869453776}
-  m_LocalRotation: {x: 0.5648935, y: -0.06880937, z: 0.047348943, w: 0.82092553}
+  m_LocalRotation: {x: 0.5648935, y: -0.06880939, z: 0.04734897, w: 0.82092553}
   m_LocalPosition: {x: -21.440891, y: -3.4399996, z: -23.811771}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5181,6 +5181,10 @@ PrefabInstance:
     - target: {fileID: 4712525820969449428, guid: a28415bc3a83379408f933ded1566b77, type: 3}
       propertyPath: m_Name
       value: BloodParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712525820969449428, guid: a28415bc3a83379408f933ded1566b77, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4712525820969449430, guid: a28415bc3a83379408f933ded1566b77, type: 3}
       propertyPath: looping

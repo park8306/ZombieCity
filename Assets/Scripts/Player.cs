@@ -118,12 +118,9 @@ public partial class Player : Actor
         }
     }
 
-    internal void TakeHit(int damage)
+    new internal void TakeHit(int damage)
     {
-        hp -= damage;
-        Debug.Log("플레이어 맞음");
-        CreateBloodEffect();
-        animator.SetTrigger("TakeHit");
+        base.TakeHit(damage);
         if (hp <= 0)
         {
             StartCoroutine(DieCo());
