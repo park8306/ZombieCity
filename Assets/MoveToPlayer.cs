@@ -9,10 +9,17 @@ public class MoveToPlayer : MonoBehaviour
     NavMeshAgent agent;
     public float maxSpeed = 20;
     public float duration = 3; // 3초동안 최대 20의 속도로 증가
+
+    bool alreadyDone = false;
     private IEnumerator OnTriggerEnter(Collider other)
     {
+        if (alreadyDone)
+        {
+            yield break;
+        }
         if(other.CompareTag("Player"))
         {
+            alreadyDone = true;
             agent = GetComponent<NavMeshAgent>();
             DOTween.To(() => agent.speed, (x) => agent.speed = x, maxSpeed, duration);    // getter 초기값
 
