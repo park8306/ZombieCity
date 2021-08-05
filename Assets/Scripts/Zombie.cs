@@ -137,6 +137,11 @@ public class Zombie : Actor
     internal void TakeHit(int damage, Vector3 toMoveDirection)
     {
         hp -= damage;
+        if (hp <=0)
+        {
+            GetComponent<Collider>().enabled = false;
+            animator.SetBool("Die", true);
+        }
         // 뒤로 밀려나게 하자.
         PushBackMove(toMoveDirection);
         CurrentFsm = TakeHitFSM;
@@ -155,9 +160,13 @@ public class Zombie : Actor
 
         if (hp <= 0)
         {
-            GetComponent<Collider>().enabled = false;
-            yield return new WaitForSeconds(1f);
+            
             Die();
+            yield break;
+        }
+        else
+        {
+            SetOriginalSpeed();
         }
         CurrentFsm = ChaseFSM;
     }
@@ -178,11 +187,13 @@ public class Zombie : Actor
     {
         agent.speed = originalSpeed;
     }
-
+    public int rewardScore = 100;
+    public float onDieDestroyDelay = 2;
     void Die()
     {
-        animator.Play("Die");
-        Destroy(gameObject, 1);
+        StageManager.Instance.AddScore(rewardScore);
+        //animator.Play("Die");
+        Destroy(gameObject, onDieDestroyDelay);
     }
 
 }

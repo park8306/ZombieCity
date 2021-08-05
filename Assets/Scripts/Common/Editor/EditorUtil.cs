@@ -59,7 +59,8 @@ public class EditorUtil
                 typeof(Button),
                 typeof(Toggle),
                 typeof(Dropdown),
-                typeof(Animator)
+                typeof(Animator),
+                typeof(TMPro.TextMeshProUGUI)
             });
 
         List<Transform> selectItems = new List<Transform>();// ;

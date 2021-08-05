@@ -14,7 +14,7 @@ namespace UISample
             dropdown = transform.Find("Dropdown").GetComponent<Dropdown>();
             dropdown.onValueChanged.AddListener(OnValueChanged);
             lastSelectedIndex = new SaveInt("lastSelectedIndex");
-            dropdown.value = lastSelectedIndex.Value;
+            dropdown.value = lastSelectedIndex;
         }
 
         void OnValueChanged(int selectedIndex)
