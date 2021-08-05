@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public partial class Player : Actor
 {
-    public static Player instance;
     public enum StateType
     {
         Idle,
@@ -16,13 +16,19 @@ public partial class Player : Actor
     }
     public bool isFiring = false;
     new public Rigidbody rigidbody;
+
+    public WeaponInfo currentWeapon;
     private void Awake()
     {
-        Debug.Log(Screen.safeArea.width);
-        rigidbody = GetComponent<Rigidbody>();
-        instance = this;
         animator = GetComponentInChildren<Animator>();
         bulletLight = GetComponentInChildren<Light>(true).gameObject;
+        animator.runtimeAnimatorController = currentWeapon.overrideAnimator;
+        var vcs = FindObjectsOfType<CinemachineVirtualCamera>(); // 버추어 카메라 모두 가져옴
+        foreach (var item in vcs)
+        {
+            item.Follow = transform;
+            item.LookAt = transform;
+        }
     }
     public float speed = 5;
     public float speedWhileShooting = 3;

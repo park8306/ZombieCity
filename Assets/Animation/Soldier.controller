@@ -277,7 +277,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: weapon_idle
+  m_Name: Soldier
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: DirX
@@ -390,13 +390,13 @@ AnimatorStateMachine:
     m_Position: {x: 270, y: 250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -614450917744967748}
-    m_Position: {x: 260, y: 50, z: 0}
+    m_Position: {x: 540, y: 80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1367550670408677388}
-    m_Position: {x: 520, y: 20, z: 0}
+    m_Position: {x: 530, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 131024593961877719}
-    m_Position: {x: 330, y: -170, z: 0}
+    m_Position: {x: 780, y: 20, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 7674382237117618741}
@@ -405,9 +405,9 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 280, y: -40, z: 0}
+  m_AnyStatePosition: {x: 790, y: 150, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
-  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_ExitPosition: {x: 210, y: -60, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -6272920352265990708}
 --- !u!1101 &1171007178438146196

@@ -16,7 +16,7 @@ public class Actor : MonoBehaviour
         pos.y = bloodEffectYPosition;
         Instantiate(bloodParticle, pos, Quaternion.identity);
     }
-
+    // 다른 곳에서도 사용할 수 있도록 static으로 선언
     static public void CreateTextEffect(int number,Vector3 position, Color color)
     {
         GameObject memoryGo = (GameObject)Resources.Load("TextEffect");
