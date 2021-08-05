@@ -61,16 +61,18 @@ public class DroppedItem : MonoBehaviour
             ItemAcquisition();
         }
     }
-
+    public Color color = Color.white;
     private void ItemAcquisition()  // 아이템 획득
     {
         alreadyDone = true; // 트리거가 작동했다고 표시
         switch (type)
         {
             case DropItemType.Gold:
+                Actor.CreateTextEffect(amount, transform.position, color);
                 StageManager.Instance.AddGold(amount);
                 break;
         }
+        transform.GetComponentInParent<MoveToPlayer>()?.StopCoroutine();
         Destroy(transform.parent.gameObject);   // 부모의 오브젝트를 파괴
     }
 }

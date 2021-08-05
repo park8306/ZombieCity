@@ -17,10 +17,10 @@ public class Actor : MonoBehaviour
         Instantiate(bloodParticle, pos, Quaternion.identity);
     }
 
-    protected void CreateTextEffect(int number, Color color)
+    static public void CreateTextEffect(int number,Vector3 position, Color color)
     {
         GameObject memoryGo = (GameObject)Resources.Load("TextEffect");
-        GameObject go = Instantiate(memoryGo, transform.position, Camera.main.transform.rotation);
+        GameObject go = Instantiate(memoryGo, position, Camera.main.transform.rotation);
         TextMeshPro textMeshPro = go.GetComponent<TextMeshPro>();
         textMeshPro.text = number.ToNumber();
         textMeshPro.color = color;
@@ -30,6 +30,6 @@ public class Actor : MonoBehaviour
     {
         hp -= damage;
         CreateBloodEffect();// 피 이펙트 생성
-        CreateTextEffect(damage, damageColor);
+        CreateTextEffect(damage,transform.position, damageColor);
     }
 }

@@ -121,6 +121,7 @@ public partial class Player : Actor
     new internal void TakeHit(int damage)
     {
         base.TakeHit(damage);
+        animator.SetTrigger("TakeHit");
         if (hp <= 0)
         {
             StartCoroutine(DieCo());
