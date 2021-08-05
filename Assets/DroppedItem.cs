@@ -50,7 +50,7 @@ public class DroppedItem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            enabled = false;
+            enabled = false;    // trigger 범위를 나가면 다시 update문을 실행하지 못함
         }
     }
     void Update()

@@ -1011,21 +1011,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5215671980858468519, guid: 41969310735eef748956b4887895f776, type: 3}
   m_PrefabInstance: {fileID: 3683794346818855902}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &586572485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 586572484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6612f7efc96b0d44fa9b7b6e94f10929, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  amount: 100
-  itemId: 0
 --- !u!95 &586572486
 Animator:
   serializedVersion: 3
@@ -1058,6 +1043,23 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.4215
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &586572489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586572484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6612f7efc96b0d44fa9b7b6e94f10929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getMethod: 0
+  keyCode: 101
+  type: 0
+  amount: 100
+  itemId: 0
 --- !u!1 &606154810
 GameObject:
   m_ObjectHideFlags: 0
@@ -3833,7 +3835,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634219023}
-  m_LocalRotation: {x: 0.1722632, y: -0.010653958, z: 0.0018632491, w: 0.9849916}
+  m_LocalRotation: {x: 0.1722632, y: -0.010653919, z: 0.0018632424, w: 0.9849916}
   m_LocalPosition: {x: -20.953693, y: -3.4399996, z: -14.6965275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4473,7 +4475,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869453776}
-  m_LocalRotation: {x: 0.5648935, y: -0.06880939, z: 0.04734897, w: 0.82092553}
+  m_LocalRotation: {x: 0.5648935, y: -0.06880937, z: 0.047348943, w: 0.82092553}
   m_LocalPosition: {x: -21.440891, y: -3.4399996, z: -23.811771}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5109,7 +5111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3683794346071332573, guid: 41969310735eef748956b4887895f776, type: 3}
       propertyPath: m_Acceleration
-      value: 8
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 3683794346071332573, guid: 41969310735eef748956b4887895f776, type: 3}
       propertyPath: avoidancePriority

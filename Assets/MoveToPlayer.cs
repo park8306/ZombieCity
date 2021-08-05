@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 
 public class MoveToPlayer : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class MoveToPlayer : MonoBehaviour
     public float duration = 3; // 3초동안 최대 20의 속도로 증가
 
     bool alreadyDone = false;
+    TweenerCore<float, float, FloatOptions> tweenResult;
     private IEnumerator OnTriggerEnter(Collider other)
     {
         if (alreadyDone)
@@ -21,7 +24,7 @@ public class MoveToPlayer : MonoBehaviour
         {
             alreadyDone = true;
             agent = GetComponent<NavMeshAgent>();
-            DOTween.To(() => agent.speed, (x) => agent.speed = x, maxSpeed, duration);    // getter 초기값
+            tweenResult = DOTween.To(() => agent.speed, (x) => agent.speed = x, maxSpeed, duration);    // getter 초기값
 
             while (true) // 코인의 목표지점을 계속 지정해줌
             {
@@ -29,5 +32,9 @@ public class MoveToPlayer : MonoBehaviour
                 yield return null;
             }
         }
+    }
+    private void OnDestroy()
+    {
+        tweenResult.Kill();
     }
 }
