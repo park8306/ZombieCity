@@ -33,6 +33,7 @@ public partial class Player : Actor
         bulletPosition = weaponInfo.bulletPosition;
         if(weaponInfo.bulletLight != null)  // 중요 유니티 자체 방식으로 널 체크를 함
             bulletLight = weaponInfo.bulletLight.gameObject;
+        shootDelay = currentWeapon.delay;
 
         var vcs = FindObjectsOfType<CinemachineVirtualCamera>(); // 버추어 카메라 모두 가져옴
         foreach (var item in vcs)

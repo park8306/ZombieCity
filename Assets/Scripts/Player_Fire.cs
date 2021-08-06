@@ -16,7 +16,7 @@ public partial class Player : Actor
             isFiring = true;
             if (shootDelayEndTime < Time.time)
             {
-                animator.SetBool("Fire", true);
+                animator.SetTrigger("StartFire");
                 shootDelayEndTime = Time.time + shootDelay;
                 switch (currentWeapon.type) // 무기의 종류에 따라서 하는 동작을 다르게 함
                 {
@@ -47,7 +47,7 @@ public partial class Player : Actor
 
     private void EndFiring()
     {
-        animator.SetBool("Fire", false);
+        //animator.SetBool("Fire",false);
         DecreaseRecoil();
         isFiring = false;
     }
