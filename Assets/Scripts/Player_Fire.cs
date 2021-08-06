@@ -18,8 +18,17 @@ public partial class Player : Actor
             {
                 animator.SetBool("Fire", true);
                 shootDelayEndTime = Time.time + shootDelay;
-                IncreaseRecoil();
-                StartCoroutine(InstantiateBulletAndFlashBulletCo());
+                switch (currentWeapon.type) // 무기의 종류에 따라서 하는 동작을 다르게 함
+                {
+                    case WeaponInfo.WeaponType.Gun:
+                        IncreaseRecoil();
+                        StartCoroutine(InstantiateBulletAndFlashBulletCo());
+                        break;
+                    case WeaponInfo.WeaponType.Melee:
+                        // 근접일 때는 무기에 콜라이더를 활성화 하자.
+                        StartCoroutine(MeleeAttackCo());
+                        break;
+                }
             }
         }
         else
@@ -28,11 +37,19 @@ public partial class Player : Actor
         }
     }
 
+    private IEnumerator MeleeAttackCo()
+    {
+        yield return new WaitForSeconds(currentWeapon.attackStartTime);
+        currentWeapon.attackCollider.enabled = true;
+        yield return new WaitForSeconds(currentWeapon.attackTime);
+        currentWeapon.attackCollider.enabled = false;
+    }
+
     private void EndFiring()
     {
-        isFiring = false;
         animator.SetBool("Fire", false);
         DecreaseRecoil();
+        isFiring = false;
     }
 
     GameObject bulletLight;
@@ -41,6 +58,7 @@ public partial class Player : Actor
     {
         yield return null;
         Instantiate(bullet, bulletPosition.position, CalculateRecoil(transform.rotation));
+        //if()
         bulletLight.SetActive(true);
         yield return new WaitForSeconds(bulletFlashTime);
         bulletLight.SetActive(false);

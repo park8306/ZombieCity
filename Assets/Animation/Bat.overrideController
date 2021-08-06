@@ -9,5 +9,7 @@ AnimatorOverrideController:
   m_Name: Bat
   m_Controller: {fileID: 9100000, guid: 94d76f859419a5048a2d6cf80ef45f88, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: d34926f519b187e4e9ea4ccaf04299fb, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 07e11b2abd73d6e44924d82aa55ca006, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 07e11b2abd73d6e44924d82aa55ca006, type: 2}
+  - m_OriginalClip: {fileID: -623603649343465320, guid: 69ace2549e669c64caa52e7e4159e7d5, type: 3}
     m_OverrideClip: {fileID: 7400000, guid: 5beb6fa42173b3346911af16b235ffc7, type: 3}

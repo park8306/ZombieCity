@@ -134,7 +134,7 @@ public class Zombie : Actor
         Gizmos.DrawWireSphere(transform.position, attackDistance);
     }
 
-    internal void TakeHit(int damage, Vector3 toMoveDirection)
+    internal void TakeHit(int damage, Vector3 toMoveDirection, float pushBackDistance = 0.1f)
     {
         base.TakeHit(damage);
         if (hp <= 0)
@@ -143,7 +143,7 @@ public class Zombie : Actor
             animator.SetBool("Die", true);
         }
         // 뒤로 밀려나게 하자.
-        PushBackMove(toMoveDirection);
+        PushBackMove(toMoveDirection, pushBackDistance);
         CurrentFsm = TakeHitFSM;
         // 피격 이펙트 생성
     }
@@ -173,13 +173,13 @@ public class Zombie : Actor
 
     public float moveBackDistance = 0.1f;
     public float moveBackNoise = 0.1f;
-    private void PushBackMove(Vector3 toMoveDirection)
+    private void PushBackMove(Vector3 toMoveDirection, float _moveBackDistance)
     {
         toMoveDirection.x += Random.Range(-moveBackNoise, moveBackNoise);
         toMoveDirection.z += Random.Range(-moveBackNoise, moveBackNoise);
         toMoveDirection.y = 0;
         toMoveDirection.Normalize();
-        transform.Translate(toMoveDirection * moveBackDistance, Space.World);
+        transform.Translate(toMoveDirection * _moveBackDistance, Space.World);
     }
 
     public float TakeHitStopSpeedTime = 0.1f;

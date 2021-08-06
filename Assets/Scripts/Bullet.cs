@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     public float destroyTime = 1f;
     public int power = 20;
     public int randomDamage = 3;
+    public float pushBackDistance = 0.1f;
     private void Start()
     {
         Destroy(gameObject, destroyTime);
@@ -22,7 +23,7 @@ public class Bullet : MonoBehaviour
         if(other.CompareTag("Zombie")) // 일반적으로 tag로 비교하면 GC가 발생한다.
         {
             var zombie = other.GetComponent<Zombie>();
-            zombie.TakeHit(power + Random.Range(-randomDamage, randomDamage), transform.forward);
+            zombie.TakeHit(power + Random.Range(-randomDamage, randomDamage), transform.forward, pushBackDistance);
             Destroy(gameObject);
         }
     }

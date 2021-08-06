@@ -21,13 +21,18 @@ public partial class Player : Actor
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-        bulletLight = GetComponentInChildren<Light>(true).gameObject;
+
         animator.runtimeAnimatorController = currentWeapon.overrideAnimator;
         // rightWeaponPosition 부모
-        var go = (GameObject)Instantiate(currentWeapon.weaponGo, rightWeaponPosition);
-        go.transform.localScale = currentWeapon.weaponGo.transform.localScale;
-        go.transform.localPosition = currentWeapon.weaponGo.transform.localPosition;
-        go.transform.localRotation = currentWeapon.weaponGo.transform.localRotation;
+        var weaponInfo = Instantiate(currentWeapon, rightWeaponPosition);
+        weaponInfo.transform.localScale = currentWeapon.gameObject.transform.localScale;
+        weaponInfo.transform.localPosition = currentWeapon.gameObject.transform.localPosition;
+        weaponInfo.transform.localRotation = currentWeapon.gameObject.transform.localRotation;
+        currentWeapon = weaponInfo;
+        currentWeapon.attackCollider.enabled = false;
+        bulletPosition = weaponInfo.bulletPosition;
+        if(weaponInfo.bulletLight != null)  // 중요 유니티 자체 방식으로 널 체크를 함
+            bulletLight = weaponInfo.bulletLight.gameObject;
 
         var vcs = FindObjectsOfType<CinemachineVirtualCamera>(); // 버추어 카메라 모두 가져옴
         foreach (var item in vcs)
@@ -160,5 +165,11 @@ public partial class Player : Actor
         GetComponent<Collider>().enabled = false;
         yield return new WaitForSeconds(diePreDelayTime);
         animator.SetTrigger("Die");
+    }
+
+    public void OnZombieEnter(Collider other)
+    {
+        var zombie = other.GetComponent<Zombie>();
+        zombie.TakeHit(currentWeapon.damage, currentWeapon.gameObject.transform.forward, currentWeapon.pushBackDistance);
     }
 }
