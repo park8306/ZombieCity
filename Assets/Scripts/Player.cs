@@ -16,24 +16,16 @@ public partial class Player : Actor
     }
     public bool isFiring = false;
 
+    public WeaponInfo mainWeapon;
+    public WeaponInfo subWeapon;
+
     public WeaponInfo currentWeapon;
     public Transform rightWeaponPosition;
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
 
-        animator.runtimeAnimatorController = currentWeapon.overrideAnimator;
-        // rightWeaponPosition 부모
-        var weaponInfo = Instantiate(currentWeapon, rightWeaponPosition);
-        weaponInfo.transform.localScale = currentWeapon.gameObject.transform.localScale;
-        weaponInfo.transform.localPosition = currentWeapon.gameObject.transform.localPosition;
-        weaponInfo.transform.localRotation = currentWeapon.gameObject.transform.localRotation;
-        currentWeapon = weaponInfo;
-        currentWeapon.attackCollider.enabled = false;
-        bulletPosition = weaponInfo.bulletPosition;
-        if(weaponInfo.bulletLight != null)  // 중요 유니티 자체 방식으로 널 체크를 함
-            bulletLight = weaponInfo.bulletLight.gameObject;
-        shootDelay = currentWeapon.delay;
+        ChangeWeapon(mainWeapon);
 
         var vcs = FindObjectsOfType<CinemachineVirtualCamera>(); // 버추어 카메라 모두 가져옴
         foreach (var item in vcs)
@@ -42,6 +34,31 @@ public partial class Player : Actor
             item.LookAt = transform;
         }
     }
+
+    GameObject currentWeaponGo;
+    private void ChangeWeapon(WeaponInfo _weaponInfo)
+    {
+        Destroy(currentWeaponGo);
+
+        currentWeapon = _weaponInfo;
+        animator.runtimeAnimatorController = currentWeapon.overrideAnimator;
+        // rightWeaponPosition 부모
+        var weaponInfo = Instantiate(currentWeapon, rightWeaponPosition);
+        currentWeaponGo = weaponInfo.gameObject;    // 전 무기의 정보를 저장
+        weaponInfo.transform.localScale = currentWeapon.gameObject.transform.localScale;
+        weaponInfo.transform.localPosition = currentWeapon.gameObject.transform.localPosition;
+        weaponInfo.transform.localRotation = currentWeapon.gameObject.transform.localRotation;
+        currentWeapon = weaponInfo;
+        if (currentWeapon.attackCollider)
+        {
+            currentWeapon.attackCollider.enabled = false;
+        }
+        bulletPosition = weaponInfo.bulletPosition;
+        if (weaponInfo.bulletLight != null)  // 중요 유니티 자체 방식으로 널 체크를 함
+            bulletLight = weaponInfo.bulletLight.gameObject;
+        shootDelay = currentWeapon.delay;
+    }
+
     public float speed = 5;
     public float speedWhileShooting = 3;
     //private void FixedUpdate()
@@ -50,6 +67,7 @@ public partial class Player : Actor
     //}
     void Update()
     {
+
         if (Time.deltaTime == 0)    // 게임을 멈추고 테스트 하기 위해서
         {
             return;
@@ -63,8 +81,19 @@ public partial class Player : Actor
             Move();
             Fire();
             LookAtMouse();
-            Roll(); 
+            Roll();
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                ToggleChangeWeapon();
+            }
         }
+    }
+
+    bool toggleWeapon = false;
+    private void ToggleChangeWeapon()
+    {
+        ChangeWeapon((toggleWeapon == true? mainWeapon : subWeapon));
+        toggleWeapon = !toggleWeapon;
     }
 
     private void Roll()
