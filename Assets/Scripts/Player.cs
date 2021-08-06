@@ -15,14 +15,20 @@ public partial class Player : Actor
         Die,
     }
     public bool isFiring = false;
-    new public Rigidbody rigidbody;
 
     public WeaponInfo currentWeapon;
+    public Transform rightWeaponPosition;
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
         bulletLight = GetComponentInChildren<Light>(true).gameObject;
         animator.runtimeAnimatorController = currentWeapon.overrideAnimator;
+        // rightWeaponPosition 부모
+        var go = (GameObject)Instantiate(currentWeapon.weaponGo, rightWeaponPosition);
+        go.transform.localScale = currentWeapon.weaponGo.transform.localScale;
+        go.transform.localPosition = currentWeapon.weaponGo.transform.localPosition;
+        go.transform.localRotation = currentWeapon.weaponGo.transform.localRotation;
+
         var vcs = FindObjectsOfType<CinemachineVirtualCamera>(); // 버추어 카메라 모두 가져옴
         foreach (var item in vcs)
         {
@@ -105,9 +111,20 @@ public partial class Player : Actor
             move.Normalize();
             float _speed = isFiring ? speedWhileShooting : speed;
             transform.Translate(move * _speed * Time.deltaTime, Space.World);
+            // 마우스 방향으로 움직일 때 y를 조정
+            // 마우스 방향(transform.forward) 움직일 때 y + 
+            // 마우스 반대 방향으로 움직일 때 y -
+            if (Mathf.RoundToInt(transform.forward.x) == 1 || Mathf.RoundToInt(transform.forward.x) == -1)
+            {
+                animator.SetFloat("DirX", transform.forward.z * move.z);
+                animator.SetFloat("DirY", transform.forward.x * move.x);
+            }
+            else
+            {
+                animator.SetFloat("DirX", transform.forward.x * move.x);
+                animator.SetFloat("DirY", transform.forward.z * move.z);
+            }
         }
-        animator.SetFloat("DirX", move.x);
-        animator.SetFloat("DirY", move.z);
         animator.SetFloat("Speed", move.sqrMagnitude);
     }
     Plane plane = new Plane(new Vector3(0, 1, 0), 0);

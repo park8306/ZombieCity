@@ -14,7 +14,7 @@ public class MoveToPlayer : MonoBehaviour
     public float duration = 3; // 3초동안 최대 20의 속도로 증가
 
     bool alreadyDone = false;
-    TweenerCore<float, float, FloatOptions> tweenResult;
+
     private void OnTriggerEnter(Collider other)
     {
         if (alreadyDone)
@@ -25,9 +25,7 @@ public class MoveToPlayer : MonoBehaviour
         {
             alreadyDone = true;
             agent = GetComponent<NavMeshAgent>();
-            tweenResult = DOTween.To(() => agent.speed, (x) => agent.speed = x, maxSpeed, duration);    // getter 초기값
-
-
+            DOTween.To(() => agent.speed, (x) => agent.speed = x, maxSpeed, duration).SetLink(gameObject);// 연결되어있는 정보를 설정 해주자?
             setDestinationCoHandle = StartCoroutine(SetDestinationCo(other.transform));
         }
     }
@@ -43,9 +41,5 @@ public class MoveToPlayer : MonoBehaviour
             agent.destination = tr.position;
             yield return null;
         }
-    }
-    private void OnDestroy()
-    {
-        tweenResult.Kill();
     }
 }
