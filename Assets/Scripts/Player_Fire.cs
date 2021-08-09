@@ -4,37 +4,37 @@ using UnityEngine;
 
 public partial class Player : Actor
 {
-    public int bulletCountInClip
+    public int BulletCountInClip
     {
         get => currentWeapon.bulletCountInClip;   // 탄창에 총알 수
         set => currentWeapon.bulletCountInClip = value;   // 탄창에 총알 수
     }
-    public int maxBulletCountInClip => currentWeapon.maxBulletCountInClip;  // 탄창에 들어가는 최대 수
-    public int allBulletCount 
+    public int MaxBulletCountInClip => currentWeapon.maxBulletCountInClip;  // 탄창에 들어가는 최대 수
+    public int AllBulletCount 
     { 
         get => currentWeapon.allBulletCount;
         set => currentWeapon.allBulletCount = value;
     }      // 가진 전체 총알 수
-    public int maxBulletCount => currentWeapon.maxBulletCount;
-    public float reloadTime => currentWeapon.reloadTime;
+    public int MaxBulletCount => currentWeapon.maxBulletCount;
+    public float ReloadTime => currentWeapon.reloadTime;
 
-    public GameObject bullet => currentWeapon.bullet;
-    public Transform bulletPosition => currentWeapon.bulletPosition;
+    public GameObject Bullet => currentWeapon.bullet;
+    public Transform BulletPosition => currentWeapon.bulletPosition;
 
 
     float shootDelayEndTime;
     void Fire()
     {
-        if (Input.GetMouseButton(0) && bulletCountInClip > 0)
+        if (Input.GetMouseButton(0) && BulletCountInClip > 0)
         {
             isFiring = true;
             if (shootDelayEndTime < Time.time)
             {
-                bulletCountInClip--;
+                BulletCountInClip--;
                 animator.SetTrigger("StartFire");
-                AmmoUI.Instance.SetBulletCount(bulletCountInClip, maxBulletCountInClip,
-                    allBulletCount + bulletCountInClip,
-                    maxBulletCount);
+                AmmoUI.Instance.SetBulletCount(BulletCountInClip, MaxBulletCountInClip,
+                    AllBulletCount + BulletCountInClip,
+                    MaxBulletCount);
                 shootDelayEndTime = Time.time + shootDelay;
                 switch (currentWeapon.type) // 무기의 종류에 따라서 하는 동작을 다르게 함
                 {
@@ -75,7 +75,8 @@ public partial class Player : Actor
     private IEnumerator InstantiateBulletAndFlashBulletCo()
     {
         yield return null;
-        Instantiate(bullet, bulletPosition.position, CalculateRecoil(transform.rotation));
+        GameObject bulletGo = Instantiate(Bullet, BulletPosition.position, CalculateRecoil(transform.rotation));
+        bulletGo.GetComponent<Bullet>().pushBackDistance = currentWeapon.pushBackDistance;
         //if()
         bulletLight.SetActive(true);
         yield return new WaitForSeconds(bulletFlashTime);

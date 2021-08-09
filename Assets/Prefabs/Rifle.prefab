@@ -175,10 +175,14 @@ MonoBehaviour:
   overrideAnimator: {fileID: 22100000, guid: 0f1eb6f47fc36e74899895c00715797b, type: 2}
   delay: 0.08
   pushBackDistance: 0.1
-  bullet: {fileID: 7352545234080564469}
+  bulletCountInClip: 8
+  maxBulletCountInClip: 8
+  allBulletCount: 500
+  maxBulletCount: 500
+  reloadTime: 1
+  bullet: {fileID: 92461655179600834, guid: 22e65920777be004ab2ea12d67ca60a6, type: 3}
   bulletPosition: {fileID: 2542843211026915240}
   bulletLight: {fileID: 765519863728134109}
-  maxBulletCount: 6
   attackStartTime: 0.1
   attackTime: 0.4
   attackCollider: {fileID: 0}
@@ -239,11 +243,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22e65920777be004ab2ea12d67ca60a6, type: 3}
---- !u!1 &7352545234080564469 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 92461655179600834, guid: 22e65920777be004ab2ea12d67ca60a6, type: 3}
-  m_PrefabInstance: {fileID: 7440229768388028215}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7352545234080564464 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 92461655179600839, guid: 22e65920777be004ab2ea12d67ca60a6, type: 3}

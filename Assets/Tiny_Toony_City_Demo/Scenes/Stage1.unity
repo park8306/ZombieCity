@@ -6612,7 +6612,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869453776}
-  m_LocalRotation: {x: 0.5648935, y: -0.06880939, z: 0.047348965, w: 0.82092553}
+  m_LocalRotation: {x: 0.5648935, y: -0.06880939, z: 0.04734897, w: 0.82092553}
   m_LocalPosition: {x: -21.440891, y: -3.4399996, z: -23.811771}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7624,26 +7624,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2048889964, guid: 903bcb50d10ecfc4c90afa5ac157fa8c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2409478094909861959, guid: 903bcb50d10ecfc4c90afa5ac157fa8c, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2409478094923461633, guid: 903bcb50d10ecfc4c90afa5ac157fa8c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2409478094923463399, guid: 903bcb50d10ecfc4c90afa5ac157fa8c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2409478094923463427, guid: 903bcb50d10ecfc4c90afa5ac157fa8c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2409478095927085504, guid: 903bcb50d10ecfc4c90afa5ac157fa8c, type: 3}
       propertyPath: m_Name
       value: Zombie
@@ -7652,18 +7632,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 91479849}
-    - target: {fileID: 2409478095927085505, guid: 903bcb50d10ecfc4c90afa5ac157fa8c, type: 3}
-      propertyPath: damageColor.b
-      value: 0.15566039
-      objectReference: {fileID: 0}
-    - target: {fileID: 2409478095927085505, guid: 903bcb50d10ecfc4c90afa5ac157fa8c, type: 3}
-      propertyPath: damageColor.g
-      value: 0.5421463
-      objectReference: {fileID: 0}
-    - target: {fileID: 2409478095927085505, guid: 903bcb50d10ecfc4c90afa5ac157fa8c, type: 3}
-      propertyPath: damageColor.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2409478095927085510, guid: 903bcb50d10ecfc4c90afa5ac157fa8c, type: 3}
       propertyPath: m_RootOrder
       value: 3
