@@ -191,6 +191,7 @@ public class Zombie : Actor
     public float onDieDestroyDelay = 2;
     void Die()
     {
+        agent.speed = 0;
         StageManager.Instance.AddScore(rewardScore);
         //animator.Play("Die");
         Destroy(gameObject, onDieDestroyDelay);

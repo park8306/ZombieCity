@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 891873109}
   - component: {fileID: 891873110}
   - component: {fileID: 891873111}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,9 +67,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2666455062172977983}
   - component: {fileID: 2355433799547718209}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bat
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

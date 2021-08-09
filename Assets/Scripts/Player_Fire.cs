@@ -4,19 +4,37 @@ using UnityEngine;
 
 public partial class Player : Actor
 {
-    public GameObject bullet;
-    public Transform bulletPosition;
+    public int bulletCountInClip
+    {
+        get => currentWeapon.bulletCountInClip;   // 탄창에 총알 수
+        set => currentWeapon.bulletCountInClip = value;   // 탄창에 총알 수
+    }
+    public int maxBulletCountInClip => currentWeapon.maxBulletCountInClip;  // 탄창에 들어가는 최대 수
+    public int allBulletCount 
+    { 
+        get => currentWeapon.allBulletCount;
+        set => currentWeapon.allBulletCount = value;
+    }      // 가진 전체 총알 수
+    public int maxBulletCount => currentWeapon.maxBulletCount;
+    public float reloadTime => currentWeapon.reloadTime;
+
+    public GameObject bullet => currentWeapon.bullet;
+    public Transform bulletPosition => currentWeapon.bulletPosition;
 
 
     float shootDelayEndTime;
     void Fire()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && bulletCountInClip > 0)
         {
             isFiring = true;
             if (shootDelayEndTime < Time.time)
             {
+                bulletCountInClip--;
                 animator.SetTrigger("StartFire");
+                AmmoUI.Instance.SetBulletCount(bulletCountInClip, maxBulletCountInClip,
+                    allBulletCount + bulletCountInClip,
+                    maxBulletCount);
                 shootDelayEndTime = Time.time + shootDelay;
                 switch (currentWeapon.type) // 무기의 종류에 따라서 하는 동작을 다르게 함
                 {

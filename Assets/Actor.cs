@@ -6,10 +6,16 @@ using UnityEngine;
 public class Actor : MonoBehaviour
 {
     public int hp = 100;
+    [HideInInspector] public int maxHp; // 최대 HP
     public GameObject bloodParticle;
 
     public float bloodEffectYPosition = 1.3f;
     protected Animator animator;
+
+    protected void Awake()
+    {
+        maxHp = hp; // maxHp의 값을 초기화
+    }
     protected void CreateBloodEffect()
     {
         var pos = transform.position;

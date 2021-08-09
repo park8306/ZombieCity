@@ -13,6 +13,7 @@ public partial class Player : Actor
         TakeHit,
         Roll,
         Die,
+        Reload,
     }
     public bool isFiring = false;
 
@@ -21,8 +22,9 @@ public partial class Player : Actor
 
     public WeaponInfo currentWeapon;
     public Transform rightWeaponPosition;
-    private void Awake()
+    new private void Awake()
     {
+        base.Awake();
         animator = GetComponentInChildren<Animator>();
 
         ChangeWeapon(mainWeapon);
@@ -33,6 +35,10 @@ public partial class Player : Actor
             item.Follow = transform;
             item.LookAt = transform;
         }
+        HealthUI.Instance.SetGauge(hp, maxHp);
+        AmmoUI.Instance.SetBulletCount(bulletCountInClip, maxBulletCountInClip,
+                    allBulletCount + bulletCountInClip,
+                    maxBulletCount);
     }
 
     GameObject currentWeaponGo;
@@ -53,7 +59,6 @@ public partial class Player : Actor
         {
             currentWeapon.attackCollider.enabled = false;
         }
-        bulletPosition = weaponInfo.bulletPosition;
         if (weaponInfo.bulletLight != null)  // 중요 유니티 자체 방식으로 널 체크를 함
             bulletLight = weaponInfo.bulletLight.gameObject;
         shootDelay = currentWeapon.delay;
@@ -82,11 +87,35 @@ public partial class Player : Actor
             Fire();
             LookAtMouse();
             Roll();
+            ReloadBullet();
             if (Input.GetKeyDown(KeyCode.Tab))
             {
                 ToggleChangeWeapon();
             }
         }
+    }
+
+    private void ReloadBullet()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            StartCoroutine(ReloadBulletCo());
+        }
+    }
+
+    private IEnumerator ReloadBulletCo()
+    {
+        stateType = StateType.Reload;
+        animator.SetTrigger("Reload");
+        int reloadCount = Math.Min(allBulletCount, maxBulletCountInClip);
+        AmmoUI.Instance.StartReload(reloadCount, maxBulletCountInClip,
+                    allBulletCount + bulletCountInClip,
+                    maxBulletCount, reloadTime);
+        yield return new WaitForSeconds(reloadTime);
+        stateType = StateType.Idle;
+        //bulletCountInClip = MaxBulletCountClip;
+        bulletCountInClip = reloadCount;
+        allBulletCount -= reloadCount;
     }
 
     bool toggleWeapon = false;
@@ -179,6 +208,7 @@ public partial class Player : Actor
     new internal void TakeHit(int damage)
     {
         base.TakeHit(damage);
+        HealthUI.Instance.SetGauge(hp, maxHp);
         animator.SetTrigger("TakeHit");
         if (hp <= 0)
         {
