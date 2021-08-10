@@ -194,12 +194,27 @@ public class Zombie : Actor
     }
     public int rewardScore = 100;
     public float onDieDestroyDelay = 2;
+    public Material dieMaterial;
+    public float dieMaterialDuration = 2; // 2초간 변경
     void Die()
     {
         agent.speed = 0;
         StageManager.Instance.AddScore(rewardScore);
+
+        // 메테리얼 교체
+        var renderers = GetComponentsInChildren<Renderer>(true); // 모든 렌더러를 가져오자 머리랑은 다르기때문에 Renderer로 가져오자
+        foreach (var item in renderers)
+        {
+            item.sharedMaterial = dieMaterial;
+        }
+        dieMaterial.SetFloat("_Progress", 1);
+        DOTween.To(() => 1f, (x) => dieMaterial.SetFloat("_Progress", x), 0.14f, dieMaterialDuration)
+            .SetDelay(onDieDestroyDelay).OnComplete(() => Destroy(gameObject));
+
+        // 교체되는 동안 보여주는 파괴
+
         //animator.Play("Die");
-        Destroy(gameObject, onDieDestroyDelay);
+        //Destroy(gameObject, onDieDestroyDelay);
     }
 
 }

@@ -175,8 +175,8 @@ MonoBehaviour:
   overrideAnimator: {fileID: 22100000, guid: 0f1eb6f47fc36e74899895c00715797b, type: 2}
   delay: 0.08
   pushBackDistance: 0.1
-  bulletCountInClip: 8
-  maxBulletCountInClip: 8
+  bulletCountInClip: 60
+  maxBulletCountInClip: 60
   allBulletCount: 500
   maxBulletCount: 500
   reloadTime: 1
