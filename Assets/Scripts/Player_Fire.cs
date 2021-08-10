@@ -25,27 +25,38 @@ public partial class Player : Actor
     float shootDelayEndTime;
     void Fire()
     {
-        if (Input.GetMouseButton(0) && BulletCountInClip > 0)
+        if (Input.GetMouseButton(0))
         {
-            isFiring = true;
-            if (shootDelayEndTime < Time.time)
+            if (BulletCountInClip > 0)
             {
-                BulletCountInClip--;
-                animator.SetTrigger("StartFire");
-                AmmoUI.Instance.SetBulletCount(BulletCountInClip, MaxBulletCountInClip,
-                    AllBulletCount + BulletCountInClip,
-                    MaxBulletCount);
-                shootDelayEndTime = Time.time + shootDelay;
-                switch (currentWeapon.type) // 무기의 종류에 따라서 하는 동작을 다르게 함
+                isFiring = true;
+                if (shootDelayEndTime < Time.time)
                 {
-                    case WeaponInfo.WeaponType.Gun:
-                        IncreaseRecoil();
-                        currentWeapon.StartCoroutine(InstantiateBulletAndFlashBulletCo());
-                        break;
-                    case WeaponInfo.WeaponType.Melee:
-                        // 근접일 때는 무기에 콜라이더를 활성화 하자.
-                        currentWeapon.StartCoroutine(MeleeAttackCo());  // currenWeapon.StartCoroutine으로 무기가 바뀌면 코루틴을 꺼주자
-                        break;
+                    BulletCountInClip--;
+                    animator.SetTrigger("StartFire");
+                    AmmoUI.Instance.SetBulletCount(BulletCountInClip, MaxBulletCountInClip,
+                        AllBulletCount + BulletCountInClip,
+                        MaxBulletCount);
+                    shootDelayEndTime = Time.time + shootDelay;
+                    switch (currentWeapon.type) // 무기의 종류에 따라서 하는 동작을 다르게 함
+                    {
+                        case WeaponInfo.WeaponType.Gun:
+                            IncreaseRecoil();
+                            currentWeapon.StartCoroutine(InstantiateBulletAndFlashBulletCo());
+                            break;
+                        case WeaponInfo.WeaponType.Melee:
+                            // 근접일 때는 무기에 콜라이더를 활성화 하자.
+                            currentWeapon.StartCoroutine(MeleeAttackCo());  // currenWeapon.StartCoroutine으로 무기가 바뀌면 코루틴을 꺼주자
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                if (reloadAlertDelayEndTime < Time.time)
+                {
+                    reloadAlertDelayEndTime = Time.time + reloadAlertDelay;
+                    CreateTextEffect("Reload!", "TalkEffect", transform.position, Color.white, transform);
                 }
             }
         }
@@ -54,6 +65,8 @@ public partial class Player : Actor
             EndFiring();
         }
     }
+    [SerializeField]float reloadAlertDelay = 0.05f;
+    float reloadAlertDelayEndTime;
 
     private IEnumerator MeleeAttackCo()
     {
