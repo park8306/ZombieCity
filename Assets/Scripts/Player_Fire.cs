@@ -10,8 +10,8 @@ public partial class Player : Actor
         set => currentWeapon.bulletCountInClip = value;   // 탄창에 총알 수
     }
     public int MaxBulletCountInClip => currentWeapon.maxBulletCountInClip;  // 탄창에 들어가는 최대 수
-    public int AllBulletCount 
-    { 
+    public int AllBulletCount
+    {
         get => currentWeapon.allBulletCount;
         set => currentWeapon.allBulletCount = value;
     }      // 가진 전체 총알 수
@@ -65,7 +65,7 @@ public partial class Player : Actor
             EndFiring();
         }
     }
-    [SerializeField]float reloadAlertDelay = 0.05f;
+    [SerializeField] float reloadAlertDelay = 0.05f;
     float reloadAlertDelayEndTime;
 
     private IEnumerator MeleeAttackCo()

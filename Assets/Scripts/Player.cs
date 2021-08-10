@@ -48,20 +48,24 @@ public partial class Player : Actor
                     AllBulletCount + BulletCountInClip,
                     MaxBulletCount);
     }
-
-    private IEnumerator Start()
+    Coroutine SettingLookAtTargetCoHandle;
+    private void Start()
+    {
+        SettingLookAtTargetCoHandle = StartCoroutine(SettingLookAtTargetCo());
+    }
+    public float yPosition = 0.13f;
+    private IEnumerator SettingLookAtTargetCo()
     {
         MultiAimConstraint multiAimConstraint = GetComponentInChildren<MultiAimConstraint>();
-        RigBuilder rigBuilder = GetComponentInChildren<RigBuilder>();
+        RigBuilder rigBuilder = GetComponentInChildren<RigBuilder>();   // 이거 필요함
         while (stateType != StateType.Die)
         {
 
-            List<Zombie> allZombies = new List<Zombie>(FindObjectsOfType<Zombie>());
+            List<Zombie> allZombies = Zombie.Zombies;
             Transform lastTarget = null;
             if(allZombies.Count > 0)
             {
                 var nearestZombie = allZombies.OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).First();
-                lastTarget = nearestZombie.transform;
                 //nearestZombie.transform
                 if (lastTarget != nearestZombie.transform)
                 {
@@ -72,7 +76,9 @@ public partial class Player : Actor
                     multiAimConstraint.data.sourceObjects = array;
                 }
             }
-            
+            var pos = animator.transform.position;
+            pos.y = yPosition;
+            animator.transform.position = pos;
             yield return new WaitForSeconds(1);
         }
     }
@@ -245,7 +251,7 @@ public partial class Player : Actor
         {
             Vector3 hitPoint = ray.GetPoint(enter);
             Vector3 dir = hitPoint - transform.position;
-            dir.y = transform.position.y;
+            dir.y = 0;
             dir.Normalize();
             transform.forward = dir;
         }
@@ -277,5 +283,14 @@ public partial class Player : Actor
     {
         var zombie = other.GetComponent<Zombie>();
         zombie.TakeHit(currentWeapon.damage, currentWeapon.gameObject.transform.forward, currentWeapon.pushBackDistance);
+    }
+    internal void RetargettingLookAt()
+    {
+        MultiAimConstraint multiAimConstraint = GetComponentInChildren<MultiAimConstraint>();
+        multiAimConstraint.data.sourceObjects = new WeightedTransformArray();
+        GetComponentInChildren<RigBuilder>().Build();
+
+        StopCoroutine(SettingLookAtTargetCoHandle);
+        SettingLookAtTargetCoHandle = StartCoroutine(SettingLookAtTargetCo());
     }
 }

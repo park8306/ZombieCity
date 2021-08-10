@@ -8,12 +8,14 @@ using Random = UnityEngine.Random;
 
 public class Zombie : Actor
 {
+    public static List<Zombie> Zombies = new List<Zombie>();
     public Transform target;
     NavMeshAgent agent;
     float originalSpeed;
     // Start is called before the first frame update
     IEnumerator Start()
     {
+        Zombies.Add(this);
         attackCollider = transform.Find("AttackRange").GetComponent<SphereCollider>();
         agent = GetComponent<NavMeshAgent>();
         originalSpeed = agent.speed;
@@ -140,6 +142,8 @@ public class Zombie : Actor
         base.TakeHit(damage);
         if (hp <= 0)
         {
+            Zombies.Remove(this);
+            FindObjectOfType<Player>().RetargettingLookAt();
             GetComponent<Collider>().enabled = false;
             animator.SetBool("Die", true);
         }
